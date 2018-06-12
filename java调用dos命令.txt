@@ -1,0 +1,26 @@
+	public void monitor_app() {
+		//使用DOS控制台
+		Runtime r = Runtime.getRuntime();
+		Process p = null;
+		try {
+			//关闭adb.exe
+			String s = "taskkill /f /im "+"\"adb.exe\"";
+			p = r.exec(s);
+			Thread.sleep(5000);
+			//String s2 = "cmd /c appium";
+			//p = r.exec(s2);
+			String s1 = "adb start-server";
+			p = r.exec(s1);
+			Thread.sleep(5000);
+			String s3 = "emulator -avd monitor_app";
+			p = r.exec(s3);
+			//p.waitFor();
+			//Thread.sleep(5000);
+			Thread.sleep(300000);
+			monitor_apptest();
+		} catch (Exception e) {
+			System.out.println("错误:" + e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
